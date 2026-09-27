@@ -1,0 +1,31 @@
+name: Firmware e testes
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/test_native.sh
+  esp32:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        profile: [esp32-sim, esp32-bench]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install platformio==6.1.18
+      - run: pio run -e ${{ matrix.profile }}
+      - run: pio run -e ${{ matrix.profile }} -t buildfs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.profile }}
+          path: |
+            .pio/build/${{ matrix.profile }}/firmware.bin
+            .pio/build/${{ matrix.profile }}/bootloader.bin
+            .pio/build/${{ matrix.profile }}/partitions.bin
+            .pio/build/${{ matrix.profile }}/littlefs.bin

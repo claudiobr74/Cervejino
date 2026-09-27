@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "name": "Demo classica",
+  "description": "Demonstracao baseada nas fases do manual; validar antes de usar.",
+  "liters": 20,
+  "strike": 38,
+  "steps": [
+    {
+      "target": 52,
+      "cap": 70,
+      "ramp": 0,
+      "seconds": 600,
+      "pump": true,
+      "onSec": 600,
+      "offSec": 30
+    },
+    {
+      "target": 63,
+      "cap": 70,
+      "ramp": 0,
+      "seconds": 2100,
+      "pump": true,
+      "onSec": 600,
+      "offSec": 30
+    },
+    {
+      "target": 73,
+      "cap": 70,
+      "ramp": 0,
+      "seconds": 2100,
+      "pump": true,
+      "onSec": 600,
+      "offSec": 30
+    }
+  ],
+  "mashout": true,
+  "mashoutStep": {
+    "target": 78,
+    "cap": 70,
+    "ramp": 0,
+    "seconds": 600,
+    "pump": true,
+    "onSec": 600,
+    "offSec": 30
+  },
+  "boilReference": 97,
+  "boilPower": 65,
+  "boilSec": 3600,
+  "coolTarget": 25,
+  "whirlpoolSec": 0,
+  "whirlpoolMax": 80,
+  "additions": [
+    {
+      "name": "Lupulo 1",
+      "remainingSec": 3000
+    },
+    {
+      "name": "Lupulo 2",
+      "remainingSec": 600
+    }
+  ]
+}
